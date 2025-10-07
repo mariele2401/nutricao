@@ -20,4 +20,4 @@ console.log(altura);
 
 var imc = peso / (altura*altura);
 console.log(imc);
-imc.textContent (imc);
+imc.textContent(imc);
