@@ -20,4 +20,5 @@ console.log(altura);
 
 var imc = peso / (altura*altura);
 console.log(imc);
-imc.textContent(imc);
+varImc = paciete.querySelector(".info-imc");
+tdImc.textContent + imc.toFixed
