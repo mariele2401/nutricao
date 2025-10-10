@@ -16,7 +16,7 @@ var tdAltura = paciente.querySelector(".info-altura");
 var altura = tdAltura.textContent;
 console.log(altura);
 
-varImc = paciente.querySelector(".info-imc");
+var tdImc = paciente.querySelector(".info-imc");
 console.log(imc);
 
 var pesoEhValido = true;
