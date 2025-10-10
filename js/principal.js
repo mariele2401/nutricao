@@ -25,7 +25,7 @@ var alturaEhValido = true;
 if (peso < 0 || peso > 1000) {
     console.log("Peso inválido");
     pesoEhValido = false;
-    imc.textContent ="Peso inválido";
+    imc.textContent = "Peso inválido";
 }
 
 if (altura < 0 || altura > 2.00) {
