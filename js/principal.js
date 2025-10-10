@@ -20,7 +20,7 @@ console.log(altura);
 
 var imc = peso / (altura * altura);
 console.log(imc);
-varImc = paciete.querySelector(".info-imc");
+varImc = paciente.querySelector(".info-imc");
 
 if (peso < 0 || peso > 1000) {
     console.log("Peso inválido");
