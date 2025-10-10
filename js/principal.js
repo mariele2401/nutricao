@@ -31,7 +31,7 @@ if (peso < 0 || peso > 1000) {
 if (altura < 0 || altura > 2.00) {
     console.log("Altura inválida");
     alturaEhValido = false;
-    tdImc.textContent = "Altura inválido";
+    tdImc.textContent = "Altura inválida";
 }
 
 if (alturaEhValido && pesoEhValido) {
