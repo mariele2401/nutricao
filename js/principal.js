@@ -39,6 +39,6 @@ if (altura < 0 || altura > 2.00) {
 
 if (alturaEhValido && pesoEhValido) {
     var imc = peso / (altura * altura);
-    tdImc.textContent = imc;
+    Imc.textContent = imc;
 }
 
