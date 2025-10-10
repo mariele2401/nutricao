@@ -22,11 +22,16 @@ var imc = peso / (altura * altura);
 console.log(imc);
 varImc = paciente.querySelector(".info-imc");
 
+ var pesoEhValido = true;
+var alturaEhValido = true;
+
 if (peso < 0 || peso > 1000) {
     console.log("Peso inválido");
+    pesoEhValido = false;
 }
 
 if (altura < 0 || altura > 3.00) {
     console.log("Altura inválida");
+    alturaEhValido = true;
 }
-
+ 
