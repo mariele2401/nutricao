@@ -1,41 +1,97 @@
 var titulo = document.querySelector("h1");
 console.log(titulo);
 console.log(titulo.textContent);
-titulo.textContent = "Aparecida Nutricionista";
+titulo.textContent = ("Aparecida Nutricionista");
 
-var paciente = document.querySelector("#primeiro-paciente");
-var tdNome = paciente.querySelector(".info-nome");
-var nome = tdNome.textContent;
-console.log(nome);
 
-var tdPeso = paciente.querySelector(".info-peso");
-var peso = tdPeso.textContent;
-console.log(peso);
+21 / 10
 
-var tdAltura = paciente.querySelector(".info-altura");
-var altura = tdAltura.textContent;
-console.log(altura);
+var pacientes = document.querySelectorAll(".paciente");
 
-var tdImc = paciente.querySelector(".info-imc");
-console.log(imc);
+for (var i = 0; i < pacientes.length; i++) {
 
-var pesoEhValido = true;
-var alturaEhValido = true;
+    var paciente = pacientes[i];
 
-if (peso < 0 || peso > 1000) {
-    console.log("Peso inválido");
-    pesoEhValido = false;
-    tdImc.textContent = "Peso inválido";
+    var tdPeso = paciente.querySelector(".info-peso");
+    var peso = tdPeso.textContent;
+
+    var tdAltura = paciente.querySelector(".info-altura");
+    var altura = tdAltura.textContent;
+
+    var tdImc = paciente.querySelector(".info-imc");
+
+    var pesoEhValido = true;
+    var alturaEhValida = true;
+
+    if (peso <= 0 || peso >= 1000) {
+        console.log("Peso inválido!");
+        pesoEhValido = false;
+        tdImc.textContent = "Peso inválido";
+        // paciente.style.backgroundColor = "red";
+        paciente.classList.add("paciente-invalido");
+    }
+
+    if (altura <= 0 || altura >= 3.00) {
+        console.log("Altura inválida!");
+        alturaEhValida = false;
+        tdImc.textContent = "Altura inválida";
+        paciente.classList.add("paciente-invalido");
+    }
+
+    if (alturaEhValida && pesoEhValido) {
+        var imc = peso / (altura * altura);
+        tdImc.textContent = imc.toFixed(2);
+    }
 }
 
-if (altura < 0 || altura > 2.00) {
-    console.log("Altura inválida");
-    alturaEhValido = false;
-    tdImc.textContent = "Altura inválida";
+// 23/10
+
+// titulo.addEventListener() adiciona um escutador de eventos. 
+// PRIMEIRO MOSTRAR ESSA - DEPOIS ALTERA-LA PARA FICAR ANONIMA
+titulo.addEventListener("click", mostraMensagem);
+function mostraMensagem() {
+    alert("Olá eu fui clicado.")
 }
 
-if (alturaEhValido && pesoEhValido) {
-    var imc = peso / (altura * altura);
-    tdImc.textContent = imc;
-}
+// funcao anonima = a de cima mas diferente
+titulo.addEventListener("click", function () {
+    alert("Ola eu fui clicado numa funcao anonima");
+});
+
+// EU QUERO CHAMAR UM EVENTO DE CLICK QUANDO CLICAR NO BOTAO ADICIONAR
+var botaoAdicionar = document.querySelector("#adicionar-paciente");
+botaoAdicionar.addEventListener("click", function (event) {
+    event.preventDefault();
+    // alert("Oi eu sou o botao e fui clicado");
+    var form = document.querySelector("#form-adiciona");
+
+    var nome = form.nome.value;
+    var peso = form.peso.value;
+    var altura = form.altura.value;
+    var gordura = form.gordura.value;
+
+    var pacienteTr = document.createElement("tr");
+
+    var nomeTd = document.createElement("td");
+    var pesoTd = document.createElement("td");
+    var alturaTd = document.createElement("td");
+    var gorduraTd = document.createElement("td");
+    var imcTd = document.createElement("td");
+
+    nomeTd.textContent = nome;
+    pesoTd.textContent = peso;
+    alturaTd.textContent = altura;
+    gorduraTd.textContent = gordura;
+
+    pacienteTr.appendChild(nomeTd);
+    pacienteTr.appendChild(pesoTd);
+    pacienteTr.appendChild(alturaTd);
+    pacienteTr.appendChild(gorduraTd);
+
+    var tabela = document.querySelector("#tabela-pacientes");
+
+    tabela.appendChild(pacienteTr);
+});
+
+// ele está funcionando mas a pagina recarrega rapido pq e o comportamento esperado do botao e limpa automaticamente o console, entao por isso a gnt nao consegue ver no console.  Está certo, mas precisamos mudar o comportamento do botaão 
 
