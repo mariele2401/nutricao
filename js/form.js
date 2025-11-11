@@ -1,37 +1,50 @@
 var botaoAdicionar = document.querySelector("#adicionar-paciente");
-botaoAdicionar.addEventListener("click", function (event) {
+botaoAdicionar.addEventListener("click", function(event) {
     event.preventDefault();
-     alert("Oi eu sou o botao e fui clicado");
+
     var form = document.querySelector("#form-adiciona");
 
-    var nome = form.nome.value;
-    var peso = form.peso.value;
-    var altura = form.altura.value;
-    var gordura = form.gordura.value;
+    var paciente = obtemPacienteDoFormulario(form);
 
-    var pacienteTr = document.createElement("tr");
-
-    var nomeTd = document.createElement("td");
-    var pesoTd = document.createElement("td");
-    var alturaTd = document.createElement("td");
-    var gorduraTd = document.createElement("td");
-    var imcTd = document.createElement("td");
-
-    nomeTd.textContent = nome;
-    pesoTd.textContent = peso;
-    alturaTd.textContent = altura;
-    gorduraTd.textContent = gordura;
-    imcTd.textContent = calculaImc(peso, altura)
-
-    pacienteTr.appendChild(nomeTd);
-    pacienteTr.appendChild(pesoTd);
-    pacienteTr.appendChild(alturaTd);
-    pacienteTr.appendChild(gorduraTd);
-    pacienteTr.appendChild(imcTD);
+    var pacienteTr = montaTr(paciente);
 
     var tabela = document.querySelector("#tabela-pacientes");
 
     tabela.appendChild(pacienteTr);
+
+    form.reset();
 });
 
-// ele está funcionando mas a pagina recarrega rapido pq e o comportamento esperado do botao e limpa automaticamente o console, entao por isso a gnt nao consegue ver no console.  Está certo, mas precisamos mudar o comportamento do botaão 
+function obtemPacienteDoFormulario(form) {
+
+    var paciente = {
+        nome: form.nome.value,
+        peso: form.peso.value,
+        altura: form.altura.value,
+        gordura: form.gordura.value,
+        imc: calculaImc(form.peso.value, form.altura.value)
+    }
+
+    return paciente;
+}
+
+function montaTr(paciente) {
+    var pacienteTr = document.createElement("tr");
+    pacienteTr.classList.add("paciente");
+
+    pacienteTr.appendChild(montaTd(paciente.nome, "info-nome"));
+    pacienteTr.appendChild(montaTd(paciente.peso, "info-peso"));
+    pacienteTr.appendChild(montaTd(paciente.altura, "info-altura"));
+    pacienteTr.appendChild(montaTd(paciente.gordura, "info-gordura"));
+    pacienteTr.appendChild(montaTd(paciente.imc, "info-imc"));
+
+    return pacienteTr;
+}
+
+function montaTd(dado, classe) {
+    var td = document.createElement("td");
+    td.classList.add(classe);
+    td.textContent = dado;
+
+    return td;
+}
